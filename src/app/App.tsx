@@ -6,32 +6,37 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   View,
+  Button,
 } from "react-native";
+import { useCallback } from "react";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { registerRootComponent } from "expo";
 import { Ionicons } from "@expo/vector-icons";
-import { gStyle } from "./shared/gStyle";
 
+import { gColors } from "./global/gColors";
 import { HomeScreen } from "./screens/HomeScreen/HomeScreen";
 import { StatisticsScreen } from "./screens/StatisticsScreen/StatisticsScreen";
+import { loadFonts } from "./global/gFonts";
 
 const Tab = createBottomTabNavigator();
 
 function App() {
+  loadFonts;
   return (
     <SafeAreaView style={styles.main}>
-      <StatusBar backgroundColor={gStyle.bgBlue} barStyle="light-content" />
+      <StatusBar backgroundColor={gColors.bgBlue} barStyle="light-content" />
       <NavigationContainer>
         <Tab.Navigator
           screenOptions={({ route }) => ({
             header: () => null,
             tabBarStyle: {
-              backgroundColor: gStyle.bgBlue,
+              backgroundColor: gColors.bgBlue,
               borderTopWidth: 0,
+              marginBottom: 15,
               shadowRadius: 0,
-              elevation:0
+              elevation: 0,
             },
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
@@ -45,8 +50,32 @@ function App() {
               // You can return any component that you like here!
               return <Ionicons name={iconName} size={size} color={color} />;
             },
-            tabBarActiveTintColor: gStyle.lightBlue,
-            tabBarInactiveTintColor: gStyle.darkBlue,
+            tabBarActiveTintColor: gColors.lightBlue,
+            tabBarInactiveTintColor: gColors.darkBlue,
+            tabBarLabel: ({ focused }) => {
+              if (route.name === "Главная") {
+                return (
+                  <Text
+                    style={[
+                      { color: focused ? "white" : gColors.darkBlue },
+                      styles.tabText,
+                    ]}
+                  >
+                    Главная
+                  </Text>
+                );
+              }
+              return (
+                <Text
+                  style={[
+                    { color: focused ? "white" : gColors.darkBlue },
+                    styles.tabText,
+                  ]}
+                >
+                  Статистика
+                </Text>
+              );
+            },
           })}
         >
           <Tab.Screen name="Главная" component={HomeScreen} />
@@ -62,6 +91,11 @@ export default registerRootComponent(App);
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    backgroundColor: gStyle.bgBlue,
+    backgroundColor: gColors.bgBlue,
+  },
+  tabText: {
+    fontFamily: "Kelson",
+    letterSpacing: 0.75,
+    fontSize: 16,
   },
 });
