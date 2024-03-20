@@ -12,25 +12,25 @@ import React, { useState } from "react";
 import { gColors } from "../../global/gColors";
 import { loadFonts } from "../../global/gFonts";
 
-import ButtonComponent from "../../ui/ButtonComponent";
 import Circle from "./components/Circle";
 import PressWhen from "./components/PressWhen";
+import StartButton from "./components/StartButton";
 
 export function HomeScreen() {
-  loadFonts;
-
   const [start, setStart] = useState(false);
   const [green, setGreen] = useState(false);
+  const [time, setTime] = useState(null);
+  const [fail, setFail] = useState(false);
 
   return (
     <SafeAreaView style={styles.main}>
-      <View style={{ alignItems: "center", justifyContent: "flex-end" }}>
+      <View style={{ alignItems: "center" }}>
         <Text style={styles.title}>Тест на реакцию</Text>
       </View>
       <View style={styles.body}>
-        <PressWhen start={true} green={false} />
-        <Circle start={true} green={true} />
-        <ButtonComponent text={"Начать"}></ButtonComponent>
+        <PressWhen start={start} green={green} time={time} fail={fail} />
+        <Circle start={start} green={green} time={time} fail={fail} />
+        <StartButton start={start} green={green} time={time} fail={fail} />
       </View>
     </SafeAreaView>
   );
@@ -53,8 +53,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
     flex: 1,
-  },
-  button: {
-    // paddingTop: 20,
   },
 });

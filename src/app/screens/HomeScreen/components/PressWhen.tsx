@@ -1,12 +1,8 @@
 import { StyleSheet, View, Text } from "react-native";
 import React from "react";
+import { TypeDefault } from "../types";
 
-type TypePressWhen = {
-  start: boolean;
-  green: boolean;
-};
-
-export default function PressWhen(props: TypePressWhen) {
+export default function PressWhen(props: TypeDefault) {
   return (
     <Text style={styles.text}>
       {props.start

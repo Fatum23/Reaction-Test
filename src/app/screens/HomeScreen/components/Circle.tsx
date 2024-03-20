@@ -1,14 +1,20 @@
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native'
-import React from 'react'
+import {
+  View,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+  Text,
+} from "react-native";
+import React from "react";
+import { TypeDefault } from "../types";
 
-type TypeCircle = {
-    start: boolean,
-    green: boolean
-}
-
-export default function Circle(props: TypeCircle) {
+export default function Circle(props: TypeDefault) {
   return (
-    <TouchableOpacity activeOpacity={0.7}>
+    <TouchableOpacity
+      activeOpacity={
+        props.start && !props.fail && props.time !== null ? 0.7 : 1
+      }
+    >
       <View style={styles.circle}></View>
     </TouchableOpacity>
   );
