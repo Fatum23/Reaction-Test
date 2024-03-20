@@ -7,25 +7,29 @@ import {
   TouchableOpacity,
   Button,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 
 import { gColors } from "../../global/gColors";
 import { loadFonts } from "../../global/gFonts";
 
 import ButtonComponent from "../../ui/ButtonComponent";
+import Circle from "./components/Circle";
+import PressWhen from "./components/PressWhen";
 
 export function HomeScreen() {
   loadFonts;
+
+  const [start, setStart] = useState(false);
+  const [green, setGreen] = useState(false);
+
   return (
     <SafeAreaView style={styles.main}>
       <View style={{ alignItems: "center", justifyContent: "flex-end" }}>
         <Text style={styles.title}>Тест на реакцию</Text>
       </View>
       <View style={styles.body}>
-        <TouchableOpacity activeOpacity={0.7}>
-          <View style={styles.circle}></View>
-        </TouchableOpacity>
-
+        <PressWhen start={true} green={false} />
+        <Circle start={true} green={true} />
         <ButtonComponent text={"Начать"}></ButtonComponent>
       </View>
     </SafeAreaView>
@@ -38,14 +42,6 @@ const styles = StyleSheet.create({
     backgroundColor: gColors.bgBlue,
     gap: 10,
   },
-  circle: {
-    backgroundColor: "red",
-    width: "60%",
-    aspectRatio: 1,
-    borderRadius: (Dimensions.get("window").width * 0.6) / 2,
-    borderWidth: 5,
-    borderColor: "darkred",
-  },
   title: {
     paddingTop: 5,
     fontSize: 25,
@@ -55,10 +51,8 @@ const styles = StyleSheet.create({
   },
   body: {
     alignItems: "center",
-    justifyContent: "center",
-    paddingBottom: 80,
+    justifyContent: "space-evenly",
     flex: 1,
-    gap: 50,
   },
   button: {
     // paddingTop: 20,
