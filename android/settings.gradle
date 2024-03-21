@@ -1,4 +1,4 @@
-rootProject.name = 'ReactionTest'
+rootProject.name = 'Reaction-Test'
 
 dependencyResolutionManagement {
   versionCatalogs {

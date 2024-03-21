@@ -7,7 +7,6 @@ import Circle from "./components/Circle";
 import PressWhen from "./components/PressWhen";
 import StartButton from "./components/StartButton";
 import ResultText from "./components/ResultText";
-import { storage } from "../../global/services/database/local/localStorage";
 
 export function HomeScreen() {
   const [start, setStart] = useState(false);
@@ -22,7 +21,7 @@ export function HomeScreen() {
     const delay = Math.random() * (max - min) + min;
 
     const timeoutId = setTimeout(() => {
-      if (!fail && start) {
+      if (!fail && start && !success) {
         setGreen(true);
         setTime(Date.now());
       }
@@ -33,7 +32,6 @@ export function HomeScreen() {
 
   useEffect(() => {
     if (success) {
-      console.log(storage.getNumber("best"));
     }
   }, [time]);
 
@@ -52,8 +50,10 @@ export function HomeScreen() {
   const handleCircleClick = () => {
     if (start) {
       if (green) {
-        setTime((prev) => Date.now() - prev!);
-        setSuccess(true);
+        if (!success) {
+          setTime((prev) => Date.now() - prev!);
+          setSuccess(true);
+        }
       } else {
         setFail(true);
       }

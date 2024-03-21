@@ -1,4 +1,4 @@
-package com.fatum23.reactionn_test
+package com.fatum23.reaction_test
 
 import android.os.Build
 import android.os.Bundle
