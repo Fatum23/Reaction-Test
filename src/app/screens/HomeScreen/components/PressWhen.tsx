@@ -1,14 +1,15 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import React from "react";
 import { TypeDefault } from "../types";
-import { loadFonts } from "../../../global/gFonts";
 
 export default function PressWhen(props: TypeDefault) {
   return (
     <Text style={styles.text}>
       {props.start
-        ? props.green
+        ? props.green && !props.fail
           ? "Жми!!!"
+          : props.fail
+          ? "Упс!Слишком рано..."
           : "Нажми когда будет зеленый..."
         : ""}
     </Text>

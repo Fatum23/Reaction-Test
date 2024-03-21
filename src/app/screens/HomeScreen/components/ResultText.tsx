@@ -5,7 +5,7 @@ import { TypeDefault } from "../types";
 export default function ResultText(props: TypeDefault) {
   return (
     <Text style={styles.text}>
-      {props.success ? props.time?.toString() + "мс" : ""}
+      {props.success && !props.fail ? props.time?.toString() + "мс" : " "}
     </Text>
   );
 }
@@ -13,8 +13,8 @@ export default function ResultText(props: TypeDefault) {
 const styles = StyleSheet.create({
   text: {
     color: "white",
-    fontSize: 20,
+    fontSize: 22,
     fontFamily: "Kelson",
-    letterSpacing: 1
+    letterSpacing: 1,
   },
 });

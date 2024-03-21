@@ -1,17 +1,18 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import React from "react";
-import { gColors } from "../../../global/gColors";
+import { gColors } from "../../../global/styles/gColors";
 import { TypeDefault } from "../types";
 
 type TypeStartButton = {
-  handleClick: () => void;
+  startGame: () => void;
+  resetGame: () => void;
 };
 
 export default function StartButton(props: TypeDefault & TypeStartButton) {
-  let padding;
-  let title;
+  let padding = 0;
+  let title = "";
   if (props.start) {
-    if (props.fail | props.end) {
+    if (props.fail || props.success) {
       padding = 10;
       title = "Заново";
     }
@@ -28,13 +29,16 @@ export default function StartButton(props: TypeDefault & TypeStartButton) {
     text: {
       color: "white",
       fontFamily: "Kelson",
-      fontSize: 20,
+      fontSize: 22,
       letterSpacing: 1.25,
     },
   });
 
   return (
-    <TouchableOpacity style={styles.touchable} onPress={props.handleClick}>
+    <TouchableOpacity
+      style={styles.touchable}
+      onPress={props.success || props.fail ? props.resetGame : props.startGame}
+    >
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );

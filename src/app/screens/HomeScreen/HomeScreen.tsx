@@ -1,12 +1,13 @@
 import { StyleSheet, View, Text, SafeAreaView } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import { gColors } from "../../global/gColors";
+import { gColors } from "../../global/styles/gColors";
 
 import Circle from "./components/Circle";
 import PressWhen from "./components/PressWhen";
 import StartButton from "./components/StartButton";
 import ResultText from "./components/ResultText";
+import { storage } from "../../global/services/database/local/localStorage";
 
 export function HomeScreen() {
   const [start, setStart] = useState(false);
@@ -15,23 +16,47 @@ export function HomeScreen() {
   const [fail, setFail] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const startGame = () => {
-    setStart(true);
+  useEffect(() => {
     const min = 500;
     const max = 5500;
     const delay = Math.random() * (max - min) + min;
-    setTimeout(() => {
-      setGreen(true);
-      setTime(Date.now());
+
+    const timeoutId = setTimeout(() => {
+      if (!fail && start) {
+        setGreen(true);
+        setTime(Date.now());
+      }
     }, delay);
+
+    return () => clearTimeout(timeoutId);
+  }, [start]);
+
+  useEffect(() => {
+    if (success) {
+      console.log(storage.getNumber("best"));
+    }
+  }, [time]);
+
+  const startGame = () => {
+    setStart(true);
+  };
+
+  const resetGame = () => {
+    setStart(false);
+    setGreen(false);
+    setTime(null);
+    setFail(false);
+    setSuccess(false);
   };
 
   const handleCircleClick = () => {
-    if (green) {
-      setTime((prev) => Date.now() - prev!);
-      setSuccess(true);
-    } else {
-      setFail(true);
+    if (start) {
+      if (green) {
+        setTime((prev) => Date.now() - prev!);
+        setSuccess(true);
+      } else {
+        setFail(true);
+      }
     }
   };
 
@@ -69,7 +94,8 @@ export function HomeScreen() {
           time={time}
           fail={fail}
           success={success}
-          handleClick={startGame}
+          startGame={startGame}
+          resetGame={resetGame}
         />
       </View>
     </SafeAreaView>

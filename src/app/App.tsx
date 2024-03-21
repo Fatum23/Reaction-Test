@@ -1,29 +1,25 @@
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  TouchableOpacity,
-  View,
-  Button,
-} from "react-native";
-import { useCallback } from "react";
+import { SafeAreaView, StatusBar, StyleSheet, Text } from "react-native";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { registerRootComponent } from "expo";
 import { Ionicons } from "@expo/vector-icons";
+import * as NavigationBar from "expo-navigation-bar";
 
-import { gColors } from "./global/gColors";
+import { gColors } from "./global/styles/gColors";
 import { HomeScreen } from "./screens/HomeScreen/HomeScreen";
 import { StatisticsScreen } from "./screens/StatisticsScreen/StatisticsScreen";
-import { loadFonts } from "./global/gFonts";
+import { loadFonts } from "./global/styles/gFonts";
+import { storage } from "./global/services/database/local/localStorage";
+import { useEffect } from "react";
 
 const Tab = createBottomTabNavigator();
 
 function App() {
-  loadFonts;
+  useEffect(() => {
+    NavigationBar.setBackgroundColorAsync(gColors.bgBlue);
+    loadFonts;
+  }, []);
   return (
     <SafeAreaView style={styles.main}>
       <StatusBar backgroundColor={gColors.bgBlue} barStyle="light-content" />
