@@ -4,16 +4,25 @@ import { gColors } from "../../../global/gColors";
 import { TypeDefault } from "../types";
 
 type TypeStartButton = {
-  handleClick: void;
+  handleClick: () => void;
 };
 
 export default function StartButton(props: TypeDefault & TypeStartButton) {
+  let padding;
+  let title;
+  if (props.start) {
+    if (props.fail | props.end) {
+      padding = 10;
+      title = "Заново";
+    }
+  } else {
+    padding = 10;
+    title = "Начать";
+  }
   const styles = StyleSheet.create({
     touchable: {
       backgroundColor: gColors.lightBlue,
-      padding: 15,
-      paddingLeft: 20,
-      paddingRight: 20,
+      padding: padding,
       borderRadius: 5,
     },
     text: {
@@ -26,9 +35,7 @@ export default function StartButton(props: TypeDefault & TypeStartButton) {
 
   return (
     <TouchableOpacity style={styles.touchable} onPress={props.handleClick}>
-      <Text style={styles.text}>
-        {props.start ? (props.fail ? "Заново" : "") : "Начать"}
-      </Text>
+      <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
 }

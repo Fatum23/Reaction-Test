@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text } from "react-native";
 import React from "react";
 import { TypeDefault } from "../types";
+import { loadFonts } from "../../../global/gFonts";
 
 export default function PressWhen(props: TypeDefault) {
   return (

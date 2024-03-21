@@ -3,4 +3,5 @@ export type TypeDefault = {
   green: boolean;
   time: number | null;
   fail: boolean;
+  success: boolean;
 };
