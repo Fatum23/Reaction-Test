@@ -43,9 +43,9 @@ export default function StartButton(props: TypeDefault & TypeStartButton) {
 
   const fadeInOpacity = useSharedValue(0);
 
-  const fadeIn = () => {
+  const fadeIn = (duration: number) => {
     fadeInOpacity.value = withTiming(1, {
-      duration: 600,
+      duration: duration,
       easing: Easing.ease,
     });
   };
@@ -65,11 +65,13 @@ export default function StartButton(props: TypeDefault & TypeStartButton) {
 
   useEffect(() => {
     if (props.success || props.fail) {
-      fadeIn();
+      fadeIn(600);
+    } else if (!props.start) {
+      fadeIn(0);
     } else {
       fadeOut();
     }
-  }, [props.success, props.fail]);
+  }, [props.success, props.fail, props.start]);
 
   return (
     <Animated.View style={animatedStyle}>
