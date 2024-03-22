@@ -8,7 +8,10 @@ import PressWhen from "./components/PressWhen";
 import StartButton from "./components/StartButton";
 import ResultText from "./components/ResultText";
 
-export function HomeScreen() {
+import { TypeHomeScreen } from "./types";
+import * as storage from "../../global/services/storage/storage"
+
+export function HomeScreen(props: TypeHomeScreen) {
   const [start, setStart] = useState(false);
   const [green, setGreen] = useState(false);
   const [time, setTime] = useState<null | number>(null);
@@ -32,6 +35,14 @@ export function HomeScreen() {
 
   useEffect(() => {
     if (success) {
+      const setBestResult = async (time: number) => {
+        await storage.getItem("best").then((bestResult) => {
+          if (bestResult === "-" || time < parseInt(bestResult)) {
+            props.setBest(time.toString());
+          }
+        })
+      }
+      setBestResult(time!)
     }
   }, [time]);
 

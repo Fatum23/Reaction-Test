@@ -10,16 +10,46 @@ import { gColors } from "./global/styles/gColors";
 import { HomeScreen } from "./screens/HomeScreen/HomeScreen";
 import { StatisticsScreen } from "./screens/StatisticsScreen/StatisticsScreen";
 import { loadFonts } from "./global/styles/gFonts";
-import { storage } from "./global/services/database/local/localStorage";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import * as storage from "../app/global/services/storage/storage"
 
 const Tab = createBottomTabNavigator();
 
 function App() {
+  const [best, setBest] = useState("-")
+  const [average, setAverage] = useState("-");
+  const [attempts, setAttempts] = useState("-");
   useEffect(() => {
+    const setStats = async () => {
+      setBest(await storage.getItem("best"))
+      setAverage(await storage.getItem("average"))
+      setAttempts(await storage.getItem("attempts"))
+    }
+    setStats();
     NavigationBar.setBackgroundColorAsync(gColors.bgBlue);
     loadFonts;
   }, []);
+
+  useEffect(() => {
+    const editStorage = async () => {
+      await storage.setItem("best", best);
+    }
+    editStorage()
+  }, [best])
+  useEffect(() => {
+    const editStorage = async () => {
+      await storage.setItem("average", average);
+    };
+    editStorage();
+  }, [average])
+  useEffect(() => {
+    const editStorage = async () => {
+      await storage.setItem("attempts", attempts);
+    };
+    editStorage();
+  }, [attempts])
+  
   return (
     <SafeAreaView style={styles.main}>
       <StatusBar backgroundColor={gColors.bgBlue} barStyle="light-content" />
@@ -74,8 +104,29 @@ function App() {
             },
           })}
         >
-          <Tab.Screen name="Главная" component={HomeScreen} />
-          <Tab.Screen name="Статистика" component={StatisticsScreen} />
+          <Tab.Screen
+            name="Главная"
+            children={() => (
+              <HomeScreen
+                setBest={setBest}
+                setAverage={setAverage}
+                setAttempts={setAttempts}
+              />
+            )}
+          />
+          <Tab.Screen
+            name="Статистика"
+            children={() => (
+              <StatisticsScreen
+                best={best}
+                average={average}
+                attempts={attempts}
+                setBest={setBest}
+                setAverage={setAverage}
+                setAttempts={setAttempts}
+              />
+            )}
+          />
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaView>
