@@ -12,10 +12,11 @@ export function StatisticsScreen(props: TypeStatisticsScreen & TypeHomeScreen) {
       </View>
       <View style={styles.body}>
         <Text style={[styles.title, { paddingTop: 10 }]}>
-          Лучший результат: {props.best === "-" ? "" : props.best + "ms"}
+          Лучший результат: {props.best === "-" ? "-" : props.best + "ms"}
         </Text>
         <Text style={[styles.title, { paddingTop: 10 }]}>
-          Средний результат: {props.average === "-" ? "-" : props.average + "ms"}
+          Средний результат:{" "}
+          {props.average === "-" ? "-" : props.average + "ms"}
         </Text>
         <Text style={[styles.title, { paddingTop: 10 }]}>
           Всего попыток: {props.attempts}

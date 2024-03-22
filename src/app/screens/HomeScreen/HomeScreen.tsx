@@ -9,7 +9,7 @@ import StartButton from "./components/StartButton";
 import ResultText from "./components/ResultText";
 
 import { TypeHomeScreen } from "./types";
-import * as storage from "../../global/services/storage/storage"
+import * as storage from "../../global/services/storage/storage";
 
 export function HomeScreen(props: TypeHomeScreen) {
   const [start, setStart] = useState(false);
@@ -40,9 +40,37 @@ export function HomeScreen(props: TypeHomeScreen) {
           if (bestResult === "-" || time < parseInt(bestResult)) {
             props.setBest(time.toString());
           }
-        })
-      }
-      setBestResult(time!)
+        });
+      };
+      const setAttempts = async () => {
+        await storage.getItem("attempts").then(async (attempts: string) => {
+          if (attempts === "-") {
+            attempts = "0";
+          }
+          props.setAttempts((parseInt(attempts) + 1).toString());
+        });
+      };
+      const setAverage = async (time: number) => {
+        await storage.getItem("attempts").then(async (attempts: string) => {
+          if (attempts === "-") {
+            attempts = "0";
+          }
+          await storage.getItem("average").then((average: string) => {
+            if (average === "-") {
+              average = "0";
+            }
+            props.setAverage(
+              Math.round(
+                (parseInt(average) * parseInt(attempts) + time) /
+                  (parseInt(attempts) + 1)
+              ).toString()
+            );
+          });
+        });
+      };
+      setBestResult(time!);
+      setAttempts();
+      setAverage(time!);
     }
   }, [time]);
 

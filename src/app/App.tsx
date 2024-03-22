@@ -12,20 +12,20 @@ import { StatisticsScreen } from "./screens/StatisticsScreen/StatisticsScreen";
 import { loadFonts } from "./global/styles/gFonts";
 import { useEffect, useState } from "react";
 
-import * as storage from "../app/global/services/storage/storage"
+import * as storage from "../app/global/services/storage/storage";
 
 const Tab = createBottomTabNavigator();
 
 function App() {
-  const [best, setBest] = useState("-")
+  const [best, setBest] = useState("-");
   const [average, setAverage] = useState("-");
   const [attempts, setAttempts] = useState("-");
   useEffect(() => {
     const setStats = async () => {
-      setBest(await storage.getItem("best"))
-      setAverage(await storage.getItem("average"))
-      setAttempts(await storage.getItem("attempts"))
-    }
+      setBest(await storage.getItem("best"));
+      setAverage(await storage.getItem("average"));
+      setAttempts(await storage.getItem("attempts"));
+    };
     setStats();
     NavigationBar.setBackgroundColorAsync(gColors.bgBlue);
     loadFonts;
@@ -34,22 +34,22 @@ function App() {
   useEffect(() => {
     const editStorage = async () => {
       await storage.setItem("best", best);
-    }
-    editStorage()
-  }, [best])
+    };
+    editStorage();
+  }, [best]);
   useEffect(() => {
     const editStorage = async () => {
       await storage.setItem("average", average);
     };
     editStorage();
-  }, [average])
+  }, [average]);
   useEffect(() => {
     const editStorage = async () => {
       await storage.setItem("attempts", attempts);
     };
     editStorage();
-  }, [attempts])
-  
+  }, [attempts]);
+
   return (
     <SafeAreaView style={styles.main}>
       <StatusBar backgroundColor={gColors.bgBlue} barStyle="light-content" />
@@ -73,7 +73,6 @@ function App() {
                 iconName = "stats-chart";
               }
 
-              // You can return any component that you like here!
               return <Ionicons name={iconName} size={size} color={color} />;
             },
             tabBarActiveTintColor: gColors.lightBlue,
