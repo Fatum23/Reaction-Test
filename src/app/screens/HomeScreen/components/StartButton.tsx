@@ -1,5 +1,12 @@
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import React, { useEffect } from "react";
+import Animated, {
+  useSharedValue,
+  withTiming,
+  Easing,
+  useAnimatedStyle,
+} from "react-native-reanimated";
+
 import { gColors } from "../../../global/styles/gColors";
 import { TypeDefault } from "../types";
 
@@ -34,12 +41,46 @@ export default function StartButton(props: TypeDefault & TypeStartButton) {
     },
   });
 
+  const fadeInOpacity = useSharedValue(0);
+
+  const fadeIn = () => {
+    fadeInOpacity.value = withTiming(1, {
+      duration: 600,
+      easing: Easing.ease,
+    });
+  };
+
+  const fadeOut = () => {
+    fadeInOpacity.value = withTiming(0, {
+      duration: 0,
+      easing: Easing.ease,
+    });
+  };
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: fadeInOpacity.value, // Use the value directly
+    };
+  });
+
+  useEffect(() => {
+    if (props.success || props.fail) {
+      fadeIn();
+    } else {
+      fadeOut();
+    }
+  }, [props.success, props.fail]);
+
   return (
-    <TouchableOpacity
-      style={styles.touchable}
-      onPress={props.success || props.fail ? props.resetGame : props.startGame}
-    >
-      <Text style={styles.text}>{title}</Text>
-    </TouchableOpacity>
+    <Animated.View style={animatedStyle}>
+      <TouchableOpacity
+        style={styles.touchable}
+        onPress={
+          props.success || props.fail ? props.resetGame : props.startGame
+        }
+      >
+        <Text style={styles.text}>{title}</Text>
+      </TouchableOpacity>
+    </Animated.View>
   );
 }
