@@ -4,13 +4,36 @@ import {
   Text,
   SafeAreaView,
   TouchableOpacity,
+  Alert,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { gColors } from "../../global/styles/gColors";
 import { TypeStatisticsScreen } from "./types";
 import { TypeHomeScreen } from "../HomeScreen/types";
 
 export function StatisticsScreen(props: TypeStatisticsScreen & TypeHomeScreen) {
+  const reset = () => {
+    Alert.alert(
+      "",
+      "Вы уверены?",
+      [
+        {
+          text: "Нет",
+          style: "cancel",
+        },
+        {
+          text: "Да",
+          style: "destructive",
+          onPress: () => {
+            props.setBest("-");
+            props.setAverage("-");
+            props.setAttempts("-");
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  };
   return (
     <SafeAreaView style={styles.main}>
       <View style={{ alignItems: "center" }}>
@@ -32,11 +55,7 @@ export function StatisticsScreen(props: TypeStatisticsScreen & TypeHomeScreen) {
           <TouchableOpacity
             activeOpacity={0.8}
             style={styles.button}
-            onPress={() => {
-              props.setBest("-");
-              props.setAverage("-");
-              props.setAttempts("-");
-            }}
+            onPress={() => reset()}
           >
             <Text style={styles.title}>Обнулить</Text>
           </TouchableOpacity>

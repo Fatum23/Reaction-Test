@@ -71,6 +71,16 @@ export default function StartButton(props: TypeDefault & TypeStartButton) {
     } else {
       fadeOut();
     }
+  }, []);
+
+  useEffect(() => {
+    if (props.success || props.fail) {
+      fadeIn(600);
+    } else if (!props.start) {
+      fadeIn(0);
+    } else {
+      fadeOut();
+    }
   }, [props.success, props.fail, props.start]);
 
   return (

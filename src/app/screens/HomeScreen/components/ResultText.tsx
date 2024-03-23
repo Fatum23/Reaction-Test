@@ -38,6 +38,22 @@ export default function ResultText(props: TypeDefault) {
       fadeOut();
     }
   }, [props.success]);
+
+  const styles = StyleSheet.create({
+    text: {
+      color: props.success
+        ? props.time! < 300
+          ? "rgb(75, 255, 75)"
+          : props.time! < 400
+          ? "rgb(250, 250, 51)"
+          : "crimson"
+        : "white",
+      fontSize: 22,
+      fontFamily: "Kelson",
+      letterSpacing: 1,
+    },
+  });
+
   return (
     <Animated.View style={animatedStyle}>
       <Text style={styles.text}>
@@ -46,12 +62,3 @@ export default function ResultText(props: TypeDefault) {
     </Animated.View>
   );
 }
-
-const styles = StyleSheet.create({
-  text: {
-    color: "white",
-    fontSize: 22,
-    fontFamily: "Kelson",
-    letterSpacing: 1,
-  },
-});

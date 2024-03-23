@@ -1,4 +1,4 @@
-rootProject.name = 'Reaction-Test'
+rootProject.name = 'Тест на реакцию'
 
 dependencyResolutionManagement {
   versionCatalogs {

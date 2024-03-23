@@ -1,15 +1,14 @@
 {
   "expo": {
-    "name": "Reaction-Test",
+    "name": "Тест на реакцию",
     "slug": "Reaction-Test",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./src/assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#4682b4"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
