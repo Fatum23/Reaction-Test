@@ -16,7 +16,8 @@
     },
     "android": {
       "icon": "./src/assets/images/adaptive-icon.png",
-      "package": "com.fatum23.reaction_test"
+      "package": "com.fatum23.reaction_test",
+      "enableDangerousExperimentalLeanBuilds": true
     },
     "web": {
       "favicon": "./src/assets/favicon.png"
@@ -25,6 +26,7 @@
       "eas": {
         "projectId": "54d5bc8d-e481-4581-92b8-8de0b5a79848"
       }
-    }
+    },
+    "plugins": ["expo-build-properties"]
   }
 }
