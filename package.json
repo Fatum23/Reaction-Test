@@ -24,6 +24,7 @@
     "react-native-cli": "^2.0.1",
     "react-native-reanimated": "3.6.2",
     "react-native-safe-area-context": "^4.9.0",
+    "react-native-screens": "software-mansion/react-native-screens#0f684a76276709df927dab116f7addcb9b8c2a6b",
     "react-native-typed-storage": "^0.2.0",
     "react-native-web": "~0.19.6"
   },
