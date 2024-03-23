@@ -1,0 +1,23 @@
+"filename", "language", "JSON", "JavaScript", "TypeScript", "JSON with Comments", "TypeScript JSX", "comment", "blank", "total"
+"d:\Projects\mobile\Reaction-Test\.prettierrc", "JSON", 4, 0, 0, 0, 0, 0, 1, 5
+"d:\Projects\mobile\Reaction-Test\app.json", "JSON", 32, 0, 0, 0, 0, 0, 1, 33
+"d:\Projects\mobile\Reaction-Test\babel.config.js", "JavaScript", 0, 6, 0, 0, 0, 0, 1, 7
+"d:\Projects\mobile\Reaction-Test\eas.json", "JSON", 21, 0, 0, 0, 0, 0, 1, 22
+"d:\Projects\mobile\Reaction-Test\metro.config.js", "JavaScript", 0, 4, 0, 0, 0, 0, 4, 8
+"d:\Projects\mobile\Reaction-Test\package-lock.json", "JSON", 14538, 0, 0, 0, 0, 0, 1, 14539
+"d:\Projects\mobile\Reaction-Test\package.json", "JSON", 35, 0, 0, 0, 0, 0, 1, 36
+"d:\Projects\mobile\Reaction-Test\src\app\App.tsx", "TypeScript JSX", 0, 0, 0, 0, 136, 0, 12, 148
+"d:\Projects\mobile\Reaction-Test\src\app\global\services\storage\storage.ts", "TypeScript", 0, 0, 14, 0, 0, 0, 3, 17
+"d:\Projects\mobile\Reaction-Test\src\app\global\styles\gColors.ts", "TypeScript", 0, 0, 5, 0, 0, 0, 1, 6
+"d:\Projects\mobile\Reaction-Test\src\app\global\styles\gFonts.ts", "TypeScript", 0, 0, 6, 0, 0, 0, 2, 8
+"d:\Projects\mobile\Reaction-Test\src\app\global\styles\gStyles.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 1, 1
+"d:\Projects\mobile\Reaction-Test\src\app\screens\HomeScreen\HomeScreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 149, 0, 14, 163
+"d:\Projects\mobile\Reaction-Test\src\app\screens\HomeScreen\components\Circle.tsx", "TypeScript JSX", 0, 0, 0, 0, 30, 0, 3, 33
+"d:\Projects\mobile\Reaction-Test\src\app\screens\HomeScreen\components\PressWhen.tsx", "TypeScript JSX", 0, 0, 0, 0, 24, 0, 3, 27
+"d:\Projects\mobile\Reaction-Test\src\app\screens\HomeScreen\components\ResultText.tsx", "TypeScript JSX", 0, 0, 0, 0, 57, 0, 8, 65
+"d:\Projects\mobile\Reaction-Test\src\app\screens\HomeScreen\components\StartButton.tsx", "TypeScript JSX", 0, 0, 0, 0, 79, 0, 10, 89
+"d:\Projects\mobile\Reaction-Test\src\app\screens\HomeScreen\types.ts", "TypeScript", 0, 0, 12, 0, 0, 0, 2, 14
+"d:\Projects\mobile\Reaction-Test\src\app\screens\StatisticsScreen\StatisticsScreen.tsx", "TypeScript JSX", 0, 0, 0, 0, 89, 0, 4, 93
+"d:\Projects\mobile\Reaction-Test\src\app\screens\StatisticsScreen\types.ts", "TypeScript", 0, 0, 5, 0, 0, 0, 1, 6
+"d:\Projects\mobile\Reaction-Test\tsconfig.json", "JSON with Comments", 0, 0, 0, 6, 0, 0, 1, 7
+"Total", "-", 14630, 10, 42, 6, 564, 0, 75, 15327
